@@ -2,7 +2,7 @@ package me.techchrism.ticktock;
 
 import me.techchrism.ticktock.mixin.ChunkTicketManagerInvoker;
 import me.techchrism.ticktock.mixin.ChunkTicketTypeAccessor;
-import me.techchrism.ticktock.mixin.ThreadedAnvilChunkStorageInvoker;
+import me.techchrism.ticktock.mixin.ServerChunkLoadingManagerInvoker;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.BlockState;
@@ -27,7 +27,7 @@ public class Ticktock implements ModInitializer
 
     private void tick(ServerWorld world)
     {
-        ThreadedAnvilChunkStorageInvoker storage = (ThreadedAnvilChunkStorageInvoker) world.getChunkManager().threadedAnvilChunkStorage;
+        ServerChunkLoadingManagerInvoker storage = (ServerChunkLoadingManagerInvoker) world.getChunkManager().chunkLoadingManager;
         ChunkTicketManagerInvoker ticketManager = (ChunkTicketManagerInvoker) storage.ticktock_invokeGetTicketManager();
         int randomTickSpeed = world.getGameRules().getInt(GameRules.RANDOM_TICK_SPEED);
         if(randomTickSpeed == 0)
