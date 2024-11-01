@@ -12,6 +12,7 @@ import net.minecraft.server.world.OptionalChunk;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.profiler.Profilers;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.chunk.ChunkSection;
 import net.minecraft.world.chunk.WorldChunk;
@@ -48,7 +49,7 @@ public class Ticktock implements ModInitializer
             optionalWorldChunk.ifPresent(chunk -> {
                 // Make sure it's too far to get regular random ticks
                 if (!storage.ticktock_invokeShouldTick(chunkHolder.getPos())) {
-                    Profiler profiler = world.getProfiler();
+                    Profiler profiler = Profilers.get();
                     int startX = chunk.getPos().getStartX();
                     int startZ = chunk.getPos().getStartZ();
                     int bottomY = chunk.getBottomY();
